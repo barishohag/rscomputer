@@ -24,6 +24,19 @@
     [data-theme="dark"] .channel-track{background:#26342b}[data-theme="dark"] .bar{background:#335744}[data-theme="dark"] .bar-value{color:#a1aea6}[data-theme="dark"] .badge:not(.green):not(.amber):not(.red){background:#28332d;color:#c5d0c8}[data-theme="dark"] .avatar{background:#1a3b2b;color:#8ed5aa}
     .theme-toggle{white-space:nowrap}
     @media(max-width:650px){.theme-toggle{padding:7px 9px}}
+    @keyframes posEnter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes posBarRise{from{transform:scaleY(.08);opacity:.45}to{transform:scaleY(1);opacity:1}}
+    @keyframes posMarkFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+    #page>.page-head{animation:posEnter .48s cubic-bezier(.2,.75,.25,1) both}
+    #page>.grid,#page>.card{animation:posEnter .56s cubic-bezier(.2,.75,.25,1) .08s both}
+    #page>.grid+.grid{animation-delay:.16s}
+    .kpis>.card:nth-child(1){animation-delay:.08s}.kpis>.card:nth-child(2){animation-delay:.15s}.kpis>.card:nth-child(3){animation-delay:.22s}.kpis>.card:nth-child(4){animation-delay:.29s}
+    .main-grid>.card:nth-child(1),.bottom-grid>.card:nth-child(1){animation-delay:.14s}.main-grid>.card:nth-child(2),.bottom-grid>.card:nth-child(2){animation-delay:.23s}
+    .bar{transform-origin:bottom;animation:posBarRise .72s cubic-bezier(.2,.75,.25,1) both}
+    .brand-mark{animation:posMarkFloat 3.4s ease-in-out infinite}
+    .nav button,.btn,.kpi-icon{transition:transform .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease}
+    .nav button:hover{transform:translateX(3px)}.btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(23,33,30,.08)}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
   </style>
 <script>try{if(localStorage.getItem("rscomputer-theme-v1")==="dark")document.documentElement.dataset.theme="dark"}catch{}</script>
 </head>
