@@ -82,6 +82,18 @@ export default function LoginPage() {
         .login-submit:disabled { cursor:wait; opacity:.75; }
         .login-submit span { font-size:17px; }
         .login-foot { margin:22px 0 0; color:#98a19c; text-align:center; font-size:10px; }
+        @keyframes loginEnter { from { opacity:0; transform:translateY(18px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
+        @keyframes loginFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+        .login-shell { animation:loginEnter .5s cubic-bezier(.2,.75,.25,1) both; }
+        .login-card { animation:loginEnter .68s cubic-bezier(.2,.75,.25,1) .06s both; }
+        .login-brand { animation:loginEnter .5s ease .16s both; }
+        .login-heading { animation:loginEnter .55s ease .22s both; }
+        form { animation:loginEnter .56s ease .3s both; }
+        .login-foot { animation:loginEnter .45s ease .4s both; }
+        .login-mark { animation:loginFloat 3.4s ease-in-out infinite; box-shadow:0 8px 20px rgba(26,107,74,.22); }
+        .login-submit span { transition:transform .18s ease; }
+        .login-submit:hover:not(:disabled) span { transform:translateX(3px); }
+        @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; } }
         @media(max-width:480px) { .login-card { padding:28px 22px; } }
       `}</style>
     </main>
