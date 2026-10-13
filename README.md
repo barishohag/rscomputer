@@ -15,7 +15,7 @@ Import `barishohag/rscomputer` as a Next.js project. Add these environment varia
 - `AUTH_SECRET` — a random secret of at least 32 bytes.
 - `NEXT_PUBLIC_SUPABASE_URL` — your Supabase project URL.
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` — the Supabase publishable key.
-- `SUPABASE_SERVICE_ROLE_KEY` — the Supabase server-only service role key. Never expose it to the browser or commit the real value.
+- `SUPABASE_SECRET_KEY` or `SUPABASE_SERVICE_ROLE_KEY` — the server-only Supabase key used by authenticated server routes. Never expose it to the browser or commit the real value.
 
 After setting the variables, run the SQL in `supabase/schema.sql` in the Supabase SQL Editor and redeploy.
 
@@ -34,4 +34,6 @@ New Google and email accounts start as pending. Sign in with the existing admin 
 
 The original admin username/password remains available. It uses environment variables on the server and issues a signed, HTTP-only, secure-in-production cookie that expires after eight hours. Supabase verifies Google/email accounts; the app issues a separate signed cookie only after the account is approved. Sign out clears the app cookie.
 
-The starter register opens empty. New POS records are stored in the current browser's local storage and do not sync across devices.
+## POS cloud backup
+
+The dashboard reads its shared POS snapshot from the `pos_store` table and saves it after each sale, payment collection, cash count, order, or settings change. The signed-in app server performs the database access with a server-only Supabase secret; direct browser access is blocked by row-level security. Local storage remains as a fallback if the cloud store is unavailable. Run `supabase/schema.sql` once in the connected Supabase project's SQL Editor, connect that Supabase resource to the Vercel project, and redeploy.
